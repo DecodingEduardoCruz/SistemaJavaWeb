@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div> 
+<div class="card-body "></div>
+
+<section class="section container">		
+	<div id="list" class="row ">
+		<div class="modal-content ">
+			<div class="card-body border-bottom border-gray" >
+				<strong><i class="fas fa-list"></i></i> Relatório de Produtos Cadastrados</strong>
+			</div>
+			<div class="table-responsive col-md-12 ">
+				<table class="table table-striped "  cellspacing="0" cellpadding="0">
+		            <thead>
+		                <tr class="text-secondary">
+		                    <th><strong class="d-block text-gray-dark">#</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Nome:</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Estoque</strong></th>
+		                    <th><strong class="d-block text-gray-dark">fornecedor</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Data Compra</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Preço</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Ações</strong></th>
+		                 </tr>
+		            </thead>
+		            <tbody th:if="${!listaProdutos.empty}">
+		 
+		                <tr th:each="produto : ${listaProdutos}">
+		                    <td><span th:text="${produto.codigo}"/></td>
+		                    <td><span th:text="${produto.nome}"/></td>		   
+		                    <td class="text-center"><span th:text="${produto.estoque}"/></td>
+		                    <td><span th:text="${produto.fornecedor.nome}"/></td>
+		                    <td><span th:text="${produto.dataCompra}"/></td>
+		                    <td><span th:text="${produto.preco}"/></td>
+		       
+		                    <td class="actions">
+		                        <a class="btn btn-warning btn-xs" th:href="${(#mvc.url('CPN#editar').arg(0, produto.codigo)).build()}" data-toggle="modal" data-target="#delete-modal">Editar</a>
+		                        <a class="btn btn-danger btn-xs"  th:href="${(#mvc.url('CPN#remover').arg(0, produto.codigo)).build()}" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+		                    </td>
+		                </tr> 
+		            </tbody>
+				</table>
+					
+				 <nav aria-label="Page navigation" class="paging">
+				 <p>Página: [[${pageNumber}]] of [[${totalPages}]]</p>
+	              		<ul class="pagination" th:if="${totalPages > 1}">
+	              		 	<li class="page-item">
+	                        <a class="page-link" th:if="${totalPages > 1}" th:href="@{'/administrativo/produtos/page/' + ${totalPages - totalPages +1 }}" tabindex="-1">Primeira</a>
+	                    </li>
+	               		<li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+	                        <a class="page-link" th:if="i != pageNumber" th:href="@{'/administrativo/produtos/page/' + ${i}}" tabindex="-1">[[${i}]]</a>
+	                    </li>
+	                    <li class="page-item">
+	                        <a class="page-link" th:if="${totalPages > 1}" th:href="@{'/administrativo/produtos/page/' + ${totalPages}}" tabindex="+1">Última</a>
+	                    </li>
+	              		</ul>
+	               </nav>
+	
+				
+			</div>			    
+		</div>
+	</div>
+</section>
+
+</body>
+</html>

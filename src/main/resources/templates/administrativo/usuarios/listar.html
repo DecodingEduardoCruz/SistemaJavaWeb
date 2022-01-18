@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div> 
+<div class="card-body "></div>
+
+<section class="section container">		
+	<div id="list" class="row ">
+		<div class="modal-content ">
+			<div class="card-body border-bottom border-gray" >
+				<strong><i class="fas fa-list"></i> Relatório de Úsuarios Cadastradas</strong>
+			</div>
+			<div class="table-responsive col-md-12 ">
+				<table class="table table-striped "  cellspacing="0" cellpadding="0">
+		            <thead>
+		                <tr class="text-secondary">
+		                    <th><strong class="d-block text-gray-dark">#</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Nome:</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Úsuario</strong></th>	
+		                    <th><strong class="d-block text-gray-dark">Password</strong></th>	
+		                    <th><strong class="d-block text-gray-dark">Ativo</strong></th>	
+		                    <th><strong class="d-block text-gray-dark">Permissões</strong></th>                  
+		                    <th><strong class="d-block text-gray-dark">Ações</strong></th>
+		                 </tr>
+		            </thead>
+		            <tbody th:if="${!listaUsuarios.empty}">
+		 
+		                <tr th:each="usuario : ${listaUsuarios}">
+		                    <td><span th:text="${usuario.codigo}"/></td>
+		                    <td><span th:text="${usuario.pessoa.nome}"/></td>
+		                    <td><span th:text="${usuario.userName}"/></td>
+		                    <td><span th:text="${usuario.password}"/></td>
+		                    <td><span th:text="${usuario.active}"/></td>
+		                    <td><span th:text="${usuario.roles}"/></td>
+		                    
+		                    <td class="actions">
+		                        <a class="btn btn-warning btn-xs" th:href="${(#mvc.url('CU#editar').arg(0, usuario.codigo)).build()}">Editar</a>
+		                        <a class="btn btn-danger btn-xs"  th:href="${(#mvc.url('CU#remover').arg(0, usuario.codigo)).build()}" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+		                    </td>
+		                </tr> 
+		            </tbody>
+				</table>				         		        
+			</div>			    
+		</div>
+	</div>
+</section>
+
+</body>
+</html>

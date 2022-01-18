@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div> 
+<div class="card-body "></div>
+
+<section class="section container">		
+	<div id="list" class="row ">
+		<div class="modal-content ">
+			<div class="card-body border-bottom border-gray" >
+				<strong><i class="fas fa-list"></i> Relatório de  Entrada de Produtos</strong>
+			</div>
+			<div class="table-responsive col-md-12 ">
+				<table class="table table-striped "  cellspacing="0" cellpadding="0">
+		            <thead>
+		                <tr class="text-secondary">
+		                    <th><strong class="d-block text-gray-dark">#</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Nota Fiscal:</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Fornecedor:</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Produto</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Unit:</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Preço</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Data compra</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Data Entrega</strong></th>			                  
+		                    <th><strong class="d-block text-gray-dark">Responsavel</strong></th>
+		                 </tr>
+		            </thead>
+		            <tbody th:if="${!listaItens.empty}">
+		 
+		                <tr th:each="compra : ${listaItens}">
+		                    <td><span th:text="${compra.codigo}"></span></td>	
+		                    <td><span th:text="${compra.entrada.notaFical}"></span></td>
+		                    <td><span th:text="${compra.entrada.fornecedor.nome}"></span></td>
+		                    <td><span th:text="${compra.produto.nome}"></span></td>	
+		                    <td><span th:text="${compra.quantidade}"></span></td>		
+		                    <td><span th:text="${compra.precoCompra}"></span></td>                  	                   			
+		                    
+		                    <td><span th:text="${compra.entrada.dataCompra}"></span></td>
+		                    <td><span th:text="${compra.entrada.dataEntrega}"></span></td>	
+		                    <td><span th:text="${compra.entrada.usuario.pessoa.nome}"></span></td>                   
+		                </tr> 
+		            </tbody>
+				</table>	
+					         		        
+			</div>			    
+		</div>
+	</div>
+</section>
+
+</body>
+</html>

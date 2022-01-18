@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div>
+<div class="card-body "></div>
+
+<section class="section container">
+	<div class="modal-content ">
+		<div class="card-body border-bottom border-gray" ><strong><i class="far fa-file"></i> Cadastro de Clientes</strong></div>		
+		<form action="/administrativo/pessoa/salvar" class="row card-body" th:object="${pessoa}" method="post" >
+			<div class="row media-body pb-3 mb-0 small lh-125">	
+				<div class="col-1">
+					<input class="form-control" type="text" th:value="${pessoa.codigo}" name="codigo" placeholder="codigo" readonly/>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="col-5">
+					<input class="form-control" maxlength="50" type="text" th:value="${pessoa.nome}" name="nome" placeholder="Nome" />
+				</div>
+				
+				<div class="col-2">
+					<input class="form-control" maxlength="15" type="text" th:value="${pessoa.cpf}" name="cpf" placeholder="Cpf"/>
+				</div>
+				
+				<div class="col-2">
+					<input class="form-control" maxlength="15" type="text" th:value="${pessoa.rg}" name="rg" placeholder="Rg"/>
+				</div>				
+				
+				<div class="col-2">
+					<input class="form-control" maxlength="10" type="date" th:value="${pessoa.nascimento}" name="nascimento" placeholder="Data Nascimento"/>
+				</div>
+			</div>
+			
+			<div class="row media-body pb-3 mb-0 small lh-125">	
+				<div class="col-6">
+					<input class="form-control" maxlength="50" type="text" th:value="${pessoa.rua}" name="rua" placeholder="Rua"/>
+				</div>
+				
+				<div class="col-1">
+					<input class="form-control" maxlength="6" type="text" th:value="${pessoa.numero}" name="numero" placeholder="Núm."/>
+				</div>
+				<div class="col-3">
+					<input class="form-control" maxlength="25" type="text" th:value="${pessoa.bairro}" name="bairro" placeholder="Bairro"/>
+				</div>
+				<div class="col-2">
+					<select th:field="*{cidade}" class="form-control">
+						<option th:each="cidade : ${listaCidades}" th:value="${cidade.codigo}" th:text="${cidade.nome} + ' - ' + ${cidade.estado.sigla}"></option>
+					</select>
+				</div>	
+			</div>
+			<div class="row media-body pb-3 mb-0 small lh-125">	
+				<div class="col-3">
+					<input class="form-control" maxlength="16" type="text" th:value="${pessoa.contato}" name="contato" placeholder="Fene / Whats"/>
+				</div>	
+				
+				<div class="col-4">
+					<input class="form-control" maxlength="50" type="email" th:value="${pessoa.email}" name="email" placeholder="E-Mail"/>
+				</div>	
+				<div class="col-2">
+					<a class="form-control btn btn-warning btn-xs" href="/administrativo/cidade/cadastrar"><i class="far fa-file"> - Nova Cidade</i></a>
+				</div>
+				
+				<div class="col-3">
+					<button class="form-control btn btn-success btn-xs" type="submit"><i class="fas fa-save"> - Salvar</i></button>
+				</div>					
+			</div>			
+		</form>
+	</div>
+</section>   
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div>
+<div class="card-body "></div>
+
+<section class="section container">
+	<div class="modal-content ">
+		<div class="card-body border-bottom border-gray" ><strong><i class="far fa-file"></i> Cadastro de Fornecedores</strong></div>	
+		<form action="/administrativo/fornecedor/salvar" class="row card-body" th:object="${fornecedor}" method="post" >
+			<div class="row media-body pb-3 mb-0 small lh-125">	
+				<div class="col-1">
+					<input class="form-control" type="text" th:value="${fornecedor.codigo}" name="codigo" placeholder="codigo" readonly/>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="col-3">
+					<input class="form-control" type="text" maxlength="18" th:value="${fornecedor.cnpj}" name="cnpj" placeholder="Cnpj"/>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="col-8">
+					<input class="form-control" type="text"maxlength="50"  th:value="${fornecedor.nome}" name="nome" placeholder="nome"/>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			<div class="row media-body pb-3 mb-0 small lh-125">		
+				<div class="col-2">
+					<input class="form-control" type="text" maxlength="16" th:value="${fornecedor.fone}" name="fone" placeholder="Fone"/>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="col-4">
+					<input class="form-control" type="text" maxlength="50" th:value="${fornecedor.email}" name="email" placeholder="Site / E-Mail"/>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="col-2">
+					<select th:field="*{cidade}" class="form-control">
+						<option th:each="cidade : ${listaCidades}" th:value="${cidade.codigo}" th:text="${cidade.nome} +' - '+ ${cidade.estado.sigla}"></option>
+					</select>
+				</div>
+				<div class="col-2">
+					<a class="form-control btn btn-warning btn-xs" href="/administrativo/cidade/cadastrar"><i class="far fa-file"> - Nova Cidade</i></a>
+				</div>	
+				<div class="col-2">
+					<button class="form-control btn btn-success btn-xs" type="submit"><i class="fas fa-save"> - Salvar</i></button>
+				</div>					
+			</div>			
+		</form>
+	</div>
+</section>   
+
+</body>
+</html>

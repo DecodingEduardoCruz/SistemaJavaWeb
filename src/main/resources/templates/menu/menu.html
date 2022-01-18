@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="html_menu">
+	<head>
+		<meta charset="utf-8"/>	
+		<title>SIG - Sistemas de Gestão</title>
+		<link rel="stylesheet" href="../../css/master.css">
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>	    
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	  
+	</head>
+	<body>
+	<nav  class="navbar navbar-expand-lg navbar-dark bg-dark nav-custom">
+	  <div class="container ">
+	    <a class="navbar-brand" href="#"><i class="fab fa-reacteurope"></i> SIG</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-right">
+	        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/"><i class="fas fa-home"></i> Inicio</a></li>
+	        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/administrativo/vendas/cadastrar"><i class="fas fa-home"></i> Venda</a></li>
+	        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/administrativo/compras/cadastrar"><i class="fas fa-home"></i> Entrada</a></li>    
+	      
+	        
+	        <li class="nav-item dropdown">
+	          <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="far fa-plus-square"></i> Cadastrar</a>
+	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <li><a class="dropdown-item" href="/administrativo/estado/cadastrar"><i class="far fa-plus-square"></i> Estados</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/cidade/cadastrar"><i class="far fa-plus-square"></i> Cidade</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/pessoa/cadastrar"><i class="far fa-plus-square"></i> Pessoa</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/fornecedor/cadastrar"><i class="far fa-plus-square"></i> Fornecedor</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/produto/cadastrar"><i class="far fa-plus-square"></i> Produto</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/usuario/cadastrar"><i class="far fa-plus-square"></i> Úsuario</a></li>
+	          </ul>
+	        </li> 
+	        
+	        <li class="nav-item dropdown">
+	          <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-list-ol"></i> Listar</a>
+	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <li><a class="dropdown-item" href="/administrativo/estado/listar"><i class="fas fa-list-ol"></i> Relatório Estados</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/cidade/listar"><i class="fas fa-list-ol"></i> Relatório Cidades</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/pessoa/listar"><i class="fas fa-list-ol"></i> Relatório Pessoas</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/fornecedor/listar"><i class="fas fa-list-ol"></i> Relatório Fornecedores</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/produto/listar"><i class="fas fa-list-ol"></i> Relatório Produtos</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/usuario/listar"><i class="fas fa-list-ol"></i> Relatório Úsuarios</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/compras/listar"><i class="fas fa-list-ol"></i> Relatório Entradas Produtos</a></li>
+	            <li><a class="dropdown-item" href="/administrativo/vendas/listar"><i class="fas fa-list-ol"></i> Relatório Vendas Produtos</a></li>
+	          </ul>
+	        </li> 
+	        
+	         <li class="nav-item dropdown">
+	          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-out-alt"></i>
+	 Menu</a>
+	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+	            <li><a class="dropdown-item" href="#"></a></li>
+	          </ul>
+	        </li> 
+	      </ul>
+	  </div>
+	  </div>
+	</nav>
+</div>
+
+</html>

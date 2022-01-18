@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div>
+<div class="card-body "></div>
+
+<section class="section container">
+	<div class="modal-content ">
+		<div class="card-body border-bottom border-gray" ><strong><i class="far fa-file"></i> Entrada de Produtos</strong></div>		
+		<form action="/administrativo/compras/salvar" class="row card-body" th:object="${entrada}" method="post" >
+			<div class="row media-body pb-3 mb-0 small lh-125">			
+				<div class="col-12">
+					<strong>Funcionario:</strong>		
+					<select th:field="*{usuario}" class="form-control">
+						<option th:each="user : ${listaUsuarios}" th:value="${user.codigo}" th:text="${user.pessoa.nome}">
+						</option>						
+					</select>
+				</div>
+			</div>
+			<div class="row media-body pb-3 mb-0 small lh-125">	
+				<div class="col-1">
+					<strong>Codigo:</strong>
+					<input class="form-control" type="text" th:value="${entrada.codigo}" name="codigo" placeholder="codigo" readonly/>
+				</div>				
+				
+				<div class="col-3">
+					<strong>Nº Nota:</strong>
+					<input class="form-control" type="text" th:value="${entrada.notaFical}" name="notaFical" placeholder="Nº Nota" />
+				</div>
+				
+				<div class="col-2">
+					<strong>Data Compra:</strong>
+					<input class="form-control" type="text" th:value="${entrada.dataCompra}" name="dataCompra" placeholder="Data Compra" />
+				</div>
+				
+				<div class="col-2">
+					<strong>Data Entrega:</strong>
+					<input class="form-control" type="date" th:value="${entrada.dataEntrega}" name="dataEntrega" placeholder="Data Entrega" />
+				</div>
+				
+				<div class="col-4">	
+					<strong>Fornecedor:</strong>			
+					<select th:field="*{fornecedor}" class="form-control">
+						<option th:each="fornecedor : ${listaFornecedores}" th:value="${fornecedor.codigo}" th:text="${fornecedor.nome}">
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="row media-body pb-3 mb-0 small lh-125" th:object="${entradaItens}">	
+				<div class="col-6" >
+						<strong>Produtos:</strong>			
+						<select th:field="*{produto}" class="form-control">
+							<option th:each="prod : ${listaProdutos}" th:value="${prod.codigo}" th:text="${prod.nome}"/>
+							</option>
+						</select>
+					</div>
+					
+					<div class="col-2">
+						<strong>Quantidade:</strong>
+						<input class="form-control" type="text" th:value="${quantidade}" name="quantidade" placeholder="Quantidade" />
+						
+					</div>
+					
+					<div class="col-3">
+						<strong>Valor do Produto:</strong>
+						<input class="form-control" type="text" th:value="${precoCompra}" name="precoCompra" placeholder="Valor Compra" />
+					</div>	
+					
+					<div class="col-1">
+						<strong>Incluir:</strong>
+						<button class="form-control" name="acao" th:value="select" type="submit"><i class="fas fa-cart-plus text-success"></i></button>
+					</div>
+			</div>
+			<div class="row media-body pb-3 mb-0 small lh-125" th:object="${entradaItens}">	
+			
+			
+				<table class="table table-striped "  cellspacing="0" cellpadding="0">
+		            <thead>
+		                <tr class="text-secondary">
+		                    <th><strong class="d-block text-gray-dark">#</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Nome:</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Estoque</strong></th>
+		                    <th><strong class="d-block text-gray-dark">fornecedor</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Data Compra</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Preço</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Ações</strong></th>
+		                 </tr>
+		            </thead>
+		            <tbody th:if="${!listaProdutos.empty}">
+		 
+		                <tr th:each="itens : ${listaEntradaItens}">
+		                    <td><span th:text="${itens.codigo}"/></td>
+		                    <td><span th:text="${itens.produto.nome}"/></td>
+		                    <td><span th:text="${itens.produto.estoque}"/></td>
+		                    <td><span th:text="${itens.produto.fornecedor.nome}"/></td>
+		                    <td><span th:text="${itens.produto.dataCompra}"/></td>
+		                    <td><span th:text="${itens.produto.custo}"/></td>
+		                </tr> 
+		            </tbody>
+				</table>
+			</div>
+			<div class="row media-body pb-3 mb-0 small lh-125" th:object="${entradaItens}">					
+				<div class="col-4">
+					<button th:if="${!listaEntradaItens.empty}" class="form-control" name="acao" th:value="salvar" type="submit"><i class="fas fa-save">  Salvar</i></button>
+				</div>				
+			</div>			
+		</form>
+	</div>
+</section>   
+
+</body>
+</html>

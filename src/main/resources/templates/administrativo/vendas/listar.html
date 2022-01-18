@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div> 
+<div class="card-body "></div>
+
+<section class="section container">		
+	<div id="list" class="row ">
+		<div class="modal-content ">
+			<div class="card-body border-bottom border-gray" >
+				<strong><i class="fas fa-list"></i> Relatório de Vendas</strong>
+			</div>
+			<div class="table-responsive col-md-12 ">
+				<table class="table table-striped "  cellspacing="0" cellpadding="0">
+		            <thead>
+		                <tr class="text-secondary">
+		                    <th><strong class="d-block text-gray-dark">#</strong></th>		                    
+		                    <th><strong class="d-block text-gray-dark">Cliente: </strong></th>
+		                    <th><strong class="d-block text-gray-dark">Produto: </strong></th>
+		                    <th><strong class="d-block text-gray-dark">Quant :</strong></th>
+		                    <th><strong class="d-block text-gray-dark">Total: </strong></th>
+		                    <th><strong class="d-block text-gray-dark">Observação: </strong></th>
+		                    <th><strong class="d-block text-gray-dark">Data Venda: </strong></th>
+		                    
+		                 </tr>
+		            </thead>
+		            <tbody th:if="${!relatorioVendas.empty}">		 
+		                <tr th:each="source : ${relatorioVendas}">
+		                    <td><span th:text="${source.codigo}"></span></td>
+		                    <td><span th:text="${source.venda.pessoa.nome}"></span></td>
+		                    <td><span th:text="${source.produto.nome}"></span></td>
+		                    <td><span th:text="${source.quantidade}"></span></td>
+		                    <td><span th:text="${source.totalVenda}"></span></td>		                      
+		                    <td><span th:text="${source.venda.observacao}"></span></td> 
+		                    <td><span th:text="${source.venda.dataVenda}"></span></td>          	                   			
+		                                 
+		                </tr> 
+		            </tbody>
+				</table>	
+					         		        
+			</div>			    
+		</div>
+	</div>
+</section>
+
+</body>
+</html>

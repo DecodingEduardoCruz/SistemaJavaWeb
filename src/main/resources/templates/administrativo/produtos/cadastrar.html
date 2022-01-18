@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns="http//www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<div class="nav-custom" th:replace="menu/menu :: html_menu"><meta charset="utf-8"/>	</div>
+<div class="card-body "></div>
+
+<section class="section container">
+	<div class="modal-content ">
+		<div class="card-body border-bottom border-gray" ><strong><i class="far fa-file"></i> Cadastro de Produtos</strong><strong class="text-danger" th:if="${listaFornecedores.isEmpty}"> - Primeiro cadastre um fornecedor, depois o produto!</strong></div>		
+		<form action="/administrativo/produto/salvar" class="row card-body" th:object="${produto}" method="post" >
+			<div class="row media-body pb-3 mb-0 small lh-125">	
+				<div class="col-1">
+					<input class="form-control" type="text" th:value="${produto.codigo}" name="codigo" placeholder="codigo" readonly/>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<div class="col-5">
+					<input class="form-control" maxlength="50" type="text" th:value="${produto.nome}" name="nome" placeholder="Nome" />
+				</div>
+				
+				<div class="col-2">
+					<input class="form-control" maxlength="4" type="text" th:value="${produto.estoque}" name="estoque" placeholder="Estoque"/>
+				</div>
+				
+				<div class="col-4">
+					<select th:field="*{fornecedor}" class="form-control">
+						<option th:each="fornecedor : ${listaFornecedores}" th:value="${fornecedor.codigo}" th:text="${fornecedor.nome}"></option>
+					</select>
+				</div>
+			</div>	
+			<div class="row media-body pb-3 mb-0 small lh-125">					
+				<div class="col-2">
+					<input class="form-control" type="date" th:value="${produto.dataCompra}" name="dataCompra" placeholder="Data Compra"/>
+				</div>
+				
+				<div class="col-3">
+					<input class="form-control" type="text" th:value="${produto.custo}" name="custo" placeholder="Preco Compra"/>
+				</div>
+				
+				<div class="col-3">
+					<input class="form-control" type="text" th:value="${produto.preco}" name="preco" placeholder="Preco Venda"/>
+				</div>
+		
+				<div class="col-2">
+					<a class="form-control btn btn-warning btn-xs" href="/administrativo/fornecedor/cadastrar"><i class="far fa-file"> - Novo Fornecedor</i></a>
+				</div>				
+				<div class="col-2" th:if="${!listaFornecedores.isEmpty}">
+					<button class="form-control btn btn-success btn-xs" type="submit"><i class="fas fa-save" > - Salvar</i></button>
+				</div>					
+			</div>			
+			
+			
+		</form>
+	</div>
+</section>   
+
+</body>
+</html>
